@@ -45,7 +45,12 @@ const client = new MongoClient(uri, {
         res.send(result)
       })
 
-      
+      app.post('/tasks', async(req, res) => {
+        const task = req.body;
+        const result = await userTaskCollection.insertOne(task);
+        res.send(result);
+        
+      })
   
   
   
