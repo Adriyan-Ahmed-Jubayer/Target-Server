@@ -37,6 +37,15 @@ const client = new MongoClient(uri, {
       const userTaskCollection = client.db('TargetDB').collection('userTaskCollection');
 
 
+      app.get('/tasks', async(req, res) => {
+        const email = req.query.email;
+        const query = {email : email};
+        const cursor = userTaskCollection.find(query);
+        const result = await cursor.toArray();
+        res.send(result)
+      })
+
+      
   
   
   
